@@ -5,6 +5,7 @@
 "..\OBJ\delay.obj",
 "..\OBJ\exit.obj",
 "..\OBJ\lcd.obj",
-"..\OBJ\timer.obj" 
+"..\OBJ\timer.obj",
+"..\OBJ\rtc.obj" 
 TO "..\OBJ\fingerprinter_id" 
 PRINT(".\Listings\fingerprinter_id.m51") RAMSIZE(256) 

@@ -1,4 +1,4 @@
-C51 COMPILER V9.54   LED                                                                   04/05/2019 15:20:45 PAGE 1   
+C51 COMPILER V9.54   LED                                                                   04/05/2019 16:58:59 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE LED
@@ -9,10 +9,32 @@ COMPILER INVOKED BY: D:\MDK5\C51\BIN\C51.EXE ..\HARDWARE\led.c OPTIMIZE(8,SPEED)
 line level    source
 
    1          #include "led.h"
+   2          /*******************************************************************************
+   3          * 函 数 名         :   turn_on_led
+   4          * 函数功能         : 该函数是点亮选择的LED。
+   5          * 输    入         : ledn n=1,2,3,4,5,6,7
+   6          * 输    出         : 无
+   7          * 说    名         : LCD和LED不能同时用
+   8          *******************************************************************************/
+   9          void turn_on_led(unsigned char ledn)
+  10          {
+  11   1          ledn = 0;
+  12   1      }
+  13          /*******************************************************************************
+  14          * 函 数 名         :   turn_off_led
+  15          * 函数功能         : 该函数是关闭选择的LED。
+  16          * 输    入         : ledn n=1,2,3,4,5,6,7
+  17          * 输    出         : 无
+  18          * 说    名         : LCD和LED不能同时用
+  19          *******************************************************************************/
+  20          void turn_off_led(unsigned char ledn)//n=1,2,3,4,5,6,7
+  21          {
+  22   1          ledn = 1;
+  23   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   ----    ----
+   CODE SIZE        =      2    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
