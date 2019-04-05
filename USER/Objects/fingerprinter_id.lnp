@@ -1,0 +1,4 @@
+".\Objects\STARTUP.obj",
+".\Objects\main.obj" 
+TO ".\Objects\fingerprinter_id" 
+PRINT(".\Listings\fingerprinter_id.m51") RAMSIZE(256) 

@@ -1,0 +1,35 @@
+C51 COMPILER V9.54   MAIN                                                                  04/05/2019 13:00:30 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: D:\MDK5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main.ls
+                    -t) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <stc15f2k60s2.h>      //包含特殊功能寄存器的头文件
+   2          
+   3          sbit led8 = P0^2;          //位地址声明，sbit是小写，P是大写
+   4          //---------------------------------------------------------------
+   5          //主函数
+   6          void main()             //主函数，每个C程序里都只有一个主函数
+   7          {                 //{}代表函数的开始和结尾，注意成对存在
+   8   1      
+   9   1        led8 = 0;           //每个分好代表一个语句的结束
+  10   1      
+  11   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =      3    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
