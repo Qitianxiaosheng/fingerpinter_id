@@ -1,5 +1,10 @@
 "..\OBJ\STARTUP.obj",
 "..\OBJ\main.obj",
-"..\OBJ\led.obj" 
+"..\OBJ\led.obj",
+"..\OBJ\beep.obj",
+"..\OBJ\delay.obj",
+"..\OBJ\exit.obj",
+"..\OBJ\lcd.obj",
+"..\OBJ\timer.obj" 
 TO "..\OBJ\fingerprinter_id" 
 PRINT(".\Listings\fingerprinter_id.m51") RAMSIZE(256) 
