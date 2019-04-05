@@ -1,20 +1,21 @@
-BL51 BANKED LINKER/LOCATER V6.22                                                        04/05/2019  13:00:31  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22                                                        04/05/2019  13:13:06  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
-D:\MDK5\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\main.obj TO .\Objects\fingerprinter_id PRINT (.\Listings\finge
->> rprinter_id.m51) RAMSIZE (256)
+D:\MDK5\C51\BIN\BL51.EXE ..\OBJ\STARTUP.obj, ..\OBJ\main.obj, ..\OBJ\led.obj TO ..\OBJ\fingerprinter_id PRINT (.\Listing
+>> s\fingerprinter_id.m51) RAMSIZE (256)
 
 
 MEMORY MODEL: SMALL
 
 
 INPUT MODULES INCLUDED:
-  .\Objects\STARTUP.obj (?C_STARTUP)
-  .\Objects\main.obj (MAIN)
+  ..\OBJ\STARTUP.obj (?C_STARTUP)
+  ..\OBJ\main.obj (MAIN)
+  ..\OBJ\led.obj (LED)
 
 
-LINK MAP OF MODULE:  .\Objects\fingerprinter_id (?C_STARTUP)
+LINK MAP OF MODULE:  ..\OBJ\fingerprinter_id (?C_STARTUP)
 
 
             TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
@@ -32,7 +33,7 @@ LINK MAP OF MODULE:  .\Objects\fingerprinter_id (?C_STARTUP)
 
 
 
-OVERLAY MAP OF MODULE:   .\Objects\fingerprinter_id (?C_STARTUP)
+OVERLAY MAP OF MODULE:   ..\OBJ\fingerprinter_id (?C_STARTUP)
 
 
 SEGMENT
@@ -43,7 +44,7 @@ SEGMENT
 
 
 
-SYMBOL TABLE OF MODULE:  .\Objects\fingerprinter_id (?C_STARTUP)
+SYMBOL TABLE OF MODULE:  ..\OBJ\fingerprinter_id (?C_STARTUP)
 
   VALUE           TYPE          NAME
   ----------------------------------
@@ -58,10 +59,10 @@ SYMBOL TABLE OF MODULE:  .\Objects\fingerprinter_id (?C_STARTUP)
   D:0082H         SYMBOL        DPL
   N:0000H         SYMBOL        IBPSTACK
   N:0100H         SYMBOL        IBPSTACKTOP
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/05/2019  13:13:06  PAGE 2
+
+
   N:0080H         SYMBOL        IDATALEN
-BL51 BANKED LINKER/LOCATER V6.22                                                      04/05/2019  13:00:31  PAGE 2
-
-
   C:0803H         SYMBOL        IDATALOOP
   N:0000H         SYMBOL        PBPSTACK
   N:0100H         SYMBOL        PBPSTACKTOP
@@ -110,6 +111,27 @@ SYMBOL TABLE OF MODULE:  .\Objects\fingerprinter_id (?C_STARTUP)
   C:080EH         LINE#         11
   -------         ENDPROC       MAIN
   -------         ENDMOD        MAIN
+
+  -------         MODULE        LED
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:00C0H         PUBLIC        P4
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/05/2019  13:13:06  PAGE 3
+
+
+  D:00C8H         PUBLIC        P5
+  D:00E8H         PUBLIC        P6
+  D:00F8H         PUBLIC        P7
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  D:00D8H         PUBLIC        CCON
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  D:00D0H         PUBLIC        PSW
+  -------         ENDMOD        LED
 
 ******************************************************************************
 * RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0012H BYTE ( 0%) *

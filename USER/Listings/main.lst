@@ -1,14 +1,14 @@
-C51 COMPILER V9.54   MAIN                                                                  04/05/2019 13:00:30 PAGE 1   
+C51 COMPILER V9.54   MAIN                                                                  04/05/2019 13:12:39 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
-OBJECT MODULE PLACED IN .\Objects\main.obj
-COMPILER INVOKED BY: D:\MDK5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main.ls
-                    -t) TABS(2) OBJECT(.\Objects\main.obj)
+OBJECT MODULE PLACED IN ..\OBJ\main.obj
+COMPILER INVOKED BY: D:\MDK5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\HARDWARE) DEBUG OBJECTEXTEND PRIN
+                    -T(.\Listings\main.lst) TABS(2) OBJECT(..\OBJ\main.obj)
 
 line level    source
 
-   1          #include <stc15f2k60s2.h>      //包含特殊功能寄存器的头文件
+   1          #include "led.h"     //包含特殊功能寄存器的头文件
    2          
    3          sbit led8 = P0^2;          //位地址声明，sbit是小写，P是大写
    4          //---------------------------------------------------------------
