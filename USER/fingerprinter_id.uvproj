@@ -431,6 +431,51 @@
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\led.c</FilePath>
             </File>
+            <File>
+              <FileName>beep.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\beep.c</FilePath>
+            </File>
+            <File>
+              <FileName>delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>exit.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\exit.c</FilePath>
+            </File>
+            <File>
+              <FileName>lcd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\lcd.c</FilePath>
+            </File>
+            <File>
+              <FileName>timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>rtc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\rtc.c</FilePath>
+            </File>
+            <File>
+              <FileName>fpm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\fpm.c</FilePath>
+            </File>
+            <File>
+              <FileName>state_pros.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\state_pros.c</FilePath>
+            </File>
+            <File>
+              <FileName>uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\uart.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

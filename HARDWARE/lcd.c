@@ -47,7 +47,7 @@ void LcdWriteData(uchar dat)			//写入数据
 * 输    入       : 无
 * 输    出       : 无
 *******************************************************************************/		   
-void LcdInit()						  //LCD初始化子程序
+void LcdInit(void)						  //LCD初始化子程序
 {
 	LcdWriteCom(0x32);	 //将8位总线转为4位总线
 	LcdWriteCom(0x28);	 //在四位线下的初始化

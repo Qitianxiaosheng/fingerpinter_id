@@ -1,0 +1,13 @@
+C51 COMPILER V9.54   STATE_PROS                                                            04/06/2019 00:35:27 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE STATE_PROS
+OBJECT MODULE PLACED IN ..\OBJ\state_pros.obj
+COMPILER INVOKED BY: D:\MDK5\C51\BIN\C51.EXE ..\HARDWARE\state_pros.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\HARDWARE) DEBUG
+                    - OBJECTEXTEND PRINT(.\Listings\state_pros.lst) TABS(2) OBJECT(..\OBJ\state_pros.obj)
+
+line level    source
+
+*** ERROR C318 OF ..\HARDWARE\state_pros.c: can't open file '..\HARDWARE\state_pros.c'
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)

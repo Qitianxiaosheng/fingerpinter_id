@@ -1,0 +1,24 @@
+C51 COMPILER V9.54   UART                                                                  04/06/2019 01:38:39 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE UART
+OBJECT MODULE PLACED IN ..\OBJ\uart.obj
+COMPILER INVOKED BY: D:\MDK5\C51\BIN\C51.EXE ..\HARDWARE\uart.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\HARDWARE) DEBUG OBJEC
+                    -TEXTEND PRINT(.\Listings\uart.lst) TABS(2) OBJECT(..\OBJ\uart.obj)
+
+line level    source
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   ----    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

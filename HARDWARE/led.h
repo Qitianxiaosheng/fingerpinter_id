@@ -1,7 +1,7 @@
 #ifndef __LED_H_
 #define __LED_H_
 #include <stc15f2k60s2.h>
-
+#include <intrins.h>
 sbit led0 = P0^0;
 sbit led1 = P0^1;
 sbit led2 = P0^2;
