@@ -1,6 +1,4 @@
-#include <stc15f2k60s2.h>			 //包含特殊功能寄存器的头文件
-#include "state.h"
-#include "exit.h"
+#include "state.h"//包含特殊功能寄存器的头文件
 int flag ;
 
 /*******************************************************************************
@@ -17,6 +15,7 @@ void main()							//主函数，每个C程序里都只有一个主函数
   Exit_Init ();
   InitLcd1602();
   Ds1302Init();
+	Uart_Init();
 	LcdShowStr(0,0,PuZh);
   delay_ms(500);
   delay_ms(500);

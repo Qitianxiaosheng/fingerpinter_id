@@ -10,6 +10,6 @@ void turn_off_speaker(void);
 
 void success_speaker(void);//成功时发出清脆的声音
 void alarm_speaker(void); //失败时发出警报	
-
+void no_speaker(void);
 
 #endif

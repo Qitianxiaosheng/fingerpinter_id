@@ -1,4 +1,4 @@
-C51 COMPILER V9.54   UART                                                                  04/06/2019 13:24:47 PAGE 1   
+C51 COMPILER V9.54   UART                                                                  04/06/2019 15:08:43 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE UART
@@ -8,10 +8,36 @@ COMPILER INVOKED BY: D:\MDK5\C51\BIN\C51.EXE ..\HARDWARE\uart.c OPTIMIZE(8,SPEED
 
 line level    source
 
+   1          #include"uart.h"
+   2          
+   3          void Uart_Init(void)
+   4          {
+   5   1        TMOD=0x20;       //8位定时器，自动重装计数值
+   6   1        TH1=0xFD;         
+   7   1        TH1=0xFD;        //波特率是9600b/s；
+   8   1        TR1=1;
+   9   1        SCON = 0x40;    //定时器1做串口1的波特率发生器;
+  10   1      }
+  11          
+  12          void Uart_Send_Byte(unsigned char c)//UART Send a byte
+  13          {
+  14   1          SBUF = c;
+  15   1          while((SCON & 0X02) == 0);    //发送完为1
+  16   1          SCON &= 0XFD; // 把 TI 位清0   其他位保持不变
+  17   1      }
+  18          
+  19          unsigned char Uart_Receive_Byte()//UART Receive a byteg
+  20          {
+  21   1          unsigned char dat;
+  22   1          while((SCON & 0X01) == 0);   //接收完为1
+  23   1          SCON &= 0XFE; // 把 RI 位清0   其他位保持不变
+  24   1          dat = SBUF;
+  25   1          return (dat);
+  26   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   ----    ----
+   CODE SIZE        =     37    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

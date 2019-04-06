@@ -1,4 +1,4 @@
-C51 COMPILER V9.54   STATE                                                                 04/06/2019 13:24:47 PAGE 1   
+C51 COMPILER V9.54   STATE                                                                 04/06/2019 15:08:43 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE STATE
@@ -9,106 +9,159 @@ COMPILER INVOKED BY: D:\MDK5\C51\BIN\C51.EXE ..\HARDWARE\state.c OPTIMIZE(8,SPEE
 line level    source
 
    1          #include "state.h"
-   2          
-   3          /*******************************************************************************
-   4          * 函 数 名         :   idle_handle
-   5          * 函数功能         : 空闲服务函数
-   6          * 输    入         : 无
-   7          * 输    出         : 无
-   8          * 说    名         : 改变flag的值
-   9          *******************************************************************************/
-  10          void idle_handle(void)
-  11          {
-  12   1       
-  13   1        u8 stat[]=" IDLE_STATE";
-  14   1        Lcd1602_Write_Cmd(0x01); //清屏
-  15   1        LcdShowStr(0,0,stat);
-  16   1        Ds1302ReadTime();
-  17   1        DisplayOneChar(1,1,'0'+TIME[4]/16);     //月
-  18   1        DisplayOneChar(2,1,'0'+(TIME[4]&0x0f));
-  19   1        DisplayOneChar(3,1,'-');
-  20   1        DisplayOneChar(4,1,'0'+TIME[3]/16);     //日
-  21   1        DisplayOneChar(5,1,'0'+(TIME[3]&0x0f));
-  22   1        DisplayOneChar(6,1,'-');
-  23   1        DisplayOneChar(7,1,'0'+TIME[2]/16);       //时
-  24   1        DisplayOneChar(8,1,'0'+(TIME[2]&0x0f));        
-  25   1        DisplayOneChar(9,1,'-');
-  26   1        DisplayOneChar(10,1,'0'+TIME[1]/16);        //分
-  27   1        DisplayOneChar(11,1,'0'+(TIME[1]&0x0f));  
-  28   1        DisplayOneChar(12,1,'-');
-  29   1        DisplayOneChar(13,1,'0'+TIME[0]/16);        //秒
-  30   1        DisplayOneChar(14,1,'0'+(TIME[0]&0x0f));
-  31   1        delay_ms(50);
-  32   1        no_speaker();   
-*** WARNING C206 IN LINE 32 OF ..\HARDWARE\state.c: 'no_speaker': missing function-prototype
-  33   1      }
-  34          /*******************************************************************************
-  35          * 函 数 名         :   add_handle
-  36          * 函数功能         : 添加指纹服务函数
-  37          * 输    入         : 无
-  38          * 输    出         : 无
-  39          * 说    名         : 改变flag的值
-  40          *******************************************************************************/
-  41          void add_handle(void)
-  42          {
-  43   1        unsigned char stat[]=" ADD_STATE";
-  44   1        Lcd1602_Write_Cmd(0x01); //清屏
-  45   1        LcdShowStr(0,0,stat);
-  46   1        delay_ms(50);
-  47   1        no_speaker();  
-  48   1      }
-  49          /*******************************************************************************
-  50          * 函 数 名         :   del_handle
-  51          * 函数功能         : 删除指纹服务函数
-  52          * 输    入         : 无
-  53          * 输    出         : 无
-C51 COMPILER V9.54   STATE                                                                 04/06/2019 13:24:47 PAGE 2   
+   2           u8 id_flag;
+   3           u8 id_stat0[] = " id_000 ";
+   4           u8 id_stat1[] = " id_001 ";
+   5           u8 id_stat2[] = " id_002 ";
+   6          /*******************************************************************************
+   7          * 函 数 名         :   idle_handle
+   8          * 函数功能         : 空闲服务函数
+   9          * 输    入         : 无
+  10          * 输    出         : 无
+  11          * 说    名         : 改变flag的值
+  12          *******************************************************************************/
+  13          void idle_handle(void)
+  14          {
+  15   1       
+  16   1        u8 stat[]=" IDLE_STATE";
+  17   1        no_speaker();
+  18   1        Lcd1602_Write_Cmd(0x01); //清屏
+  19   1        LcdShowStr(0,0,stat);
+  20   1        Ds1302ReadTime();
+  21   1        DisplayOneChar(1,1,'0'+TIME[4]/16);     //月
+  22   1        DisplayOneChar(2,1,'0'+(TIME[4]&0x0f));
+  23   1        DisplayOneChar(3,1,'-');
+  24   1        DisplayOneChar(4,1,'0'+TIME[3]/16);     //日
+  25   1        DisplayOneChar(5,1,'0'+(TIME[3]&0x0f));
+  26   1        DisplayOneChar(6,1,'-');
+  27   1        DisplayOneChar(7,1,'0'+TIME[2]/16);       //时
+  28   1        DisplayOneChar(8,1,'0'+(TIME[2]&0x0f));        
+  29   1        DisplayOneChar(9,1,'-');
+  30   1        DisplayOneChar(10,1,'0'+TIME[1]/16);        //分
+  31   1        DisplayOneChar(11,1,'0'+(TIME[1]&0x0f));  
+  32   1        DisplayOneChar(12,1,'-');
+  33   1        DisplayOneChar(13,1,'0'+TIME[0]/16);        //秒
+  34   1        DisplayOneChar(14,1,'0'+(TIME[0]&0x0f));
+  35   1        delay_ms(50);
+  36   1            
+  37   1      }
+  38          /*******************************************************************************
+  39          * 函 数 名         :   add_handle
+  40          * 函数功能         : 添加指纹服务函数
+  41          * 输    入         : 无
+  42          * 输    出         : 无
+  43          * 说    名         : 改变flag的值
+  44          *******************************************************************************/
+  45          void add_handle(void)
+  46          {
+  47   1        unsigned char stat[]=" ADD_STATE";
+  48   1        no_speaker();
+  49   1        Lcd1602_Write_Cmd(0x01); //清屏
+  50   1        LcdShowStr(0,0,stat);
+  51   1        if(KEY2==0)
+  52   1        { 
+  53   2          delay_ms(10);
+  54   2          if(KEY2 == 0)
+C51 COMPILER V9.54   STATE                                                                 04/06/2019 15:08:43 PAGE 2   
 
-  54          * 说    名         : 改变flag的值
-  55          *******************************************************************************/
-  56          void del_handle (void)
-  57          {
-  58   1        unsigned char stat[]="DLE_STATE";
-  59   1        Lcd1602_Write_Cmd(0x01); //清屏
-  60   1        LcdShowStr(0,0,stat);
-  61   1        delay_ms(50);
-  62   1        no_speaker();  
-  63   1      }
-  64          /*******************************************************************************
-  65          * 函 数 名         :   identify_handle
-  66          * 函数功能         : 识别指纹服务函数
-  67          * 输    入         : 无
-  68          * 输    出         : 无
-  69          * 说    名         : 改变flag的值
-  70          *******************************************************************************/
-  71          void identify_handle(void)
-  72          {
-  73   1        unsigned char stat[]="IFY_STATE";
-  74   1        Lcd1602_Write_Cmd(0x01); //清屏
-  75   1        LcdShowStr(0,0,stat);
-  76   1        delay_ms(50);
-  77   1        success_speaker();
-  78   1      }
-  79          
-  80          
-  81          
-  82          
-  83          
-  84          
-  85          
-  86          
-  87          
+  55   2          {
+  56   3           switch(id_flag)
+  57   3            { 
+  58   4              case id_000 : id_flag = id_001; break;
+  59   4              case id_001 : id_flag = id_002; break;
+  60   4              case id_002 : id_flag = id_000; break;
+  61   4              default : id_flag = id_000;
+  62   4            }
+  63   3           while(!KEY2);
+  64   3          }
+  65   2        }
+  66   1        if(id_flag==id_000)
+  67   1          LcdShowStr(0,1,id_stat0);
+  68   1        else if(id_flag==id_001)
+  69   1          LcdShowStr(0,1,id_stat1);
+  70   1        else
+  71   1          LcdShowStr(0,1,id_stat2);
+  72   1        
+  73   1        delay_ms(50);
+  74   1      }
+  75          /*******************************************************************************
+  76          * 函 数 名         :   del_handle
+  77          * 函数功能         : 删除指纹服务函数
+  78          * 输    入         : 无
+  79          * 输    出         : 无
+  80          * 说    名         : 改变flag的值
+  81          *******************************************************************************/
+  82          void del_handle (void)
+  83          {  
+  84   1      
+  85   1        unsigned char stat[]=" DLE_STATE ";
+  86   1        no_speaker();
+  87   1        Lcd1602_Write_Cmd(0x01); //清屏
+  88   1        LcdShowStr(0,0,stat);
+  89   1        
+  90   1        if(KEY2==0)
+  91   1        { 
+  92   2          delay_ms(10);
+  93   2          if(KEY2 == 0)
+  94   2          {
+  95   3           switch(id_flag)
+  96   3            { 
+  97   4              case id_000 : id_flag = id_001; break;
+  98   4              case id_001 : id_flag = id_002; break;
+  99   4              case id_002 : id_flag = id_000; break;
+ 100   4              default : id_flag = id_000;
+ 101   4            }
+ 102   3           while(!KEY2);
+ 103   3          }
+ 104   2        }
+ 105   1        if(id_flag==id_000)
+ 106   1          LcdShowStr(0,1,id_stat0);
+ 107   1        else if(id_flag==id_001)
+ 108   1          LcdShowStr(0,1,id_stat1);
+ 109   1        else
+ 110   1          LcdShowStr(0,1,id_stat2);
+ 111   1        
+ 112   1        delay_ms(50);
+ 113   1      }
+ 114          /*******************************************************************************
+ 115          * 函 数 名         :   identify_handle
+ 116          * 函数功能         : 识别指纹服务函数
+C51 COMPILER V9.54   STATE                                                                 04/06/2019 15:08:43 PAGE 3   
+
+ 117          * 输    入         : 无
+ 118          * 输    出         : 无
+ 119          * 说    名         : 改变flag的值
+ 120          *******************************************************************************/
+ 121          void identify_handle(void)
+ 122          {
+ 123   1        unsigned char stat[]=" IFY_STATE ";
+ 124   1        Lcd1602_Write_Cmd(0x01); //清屏
+ 125   1        LcdShowStr(0,0,stat);
+ 126   1      
+ 127   1        delay_ms(50);
+ 128   1        success_speaker();
+ 129   1      //  alarm_speaker(); //失败时发出警报 
+ 130   1      }
+ 131          
+ 132          
+ 133          
+ 134          
+ 135          
+ 136          
+ 137          
+ 138          
+ 139          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    360    ----
-   CONSTANT SIZE    =     43    ----
+   CODE SIZE        =    514    ----
+   CONSTANT SIZE    =     47    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =   ----      43
+   DATA SIZE        =     28      47
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
 
 
-C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
