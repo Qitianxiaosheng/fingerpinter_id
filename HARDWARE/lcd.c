@@ -1,7 +1,13 @@
 #include"lcd.h"
 
-
-void Read_Busy()           //忙检测函数，判断bit7是0，允许执行；1禁止
+/*******************************************************************************
+* 函 数 名         :  Read_Busy
+* 函数功能		     : 忙检测函数
+* 输    入         : 无
+* 输    出         : 无
+* 说    名         : 应去掉led功能，判断bit7是0，允许执行；1禁止
+*******************************************************************************/
+void Read_Busy()          
 {
     unsigned char sta;      //
     LCD1602_DB = 0xff;
@@ -14,8 +20,14 @@ void Read_Busy()           //忙检测函数，判断bit7是0，允许执行；1禁止
         LCD1602_EN = 0;    //使能，用完就拉低，释放总线
     }while(sta & 0x80);
 }
-
-void Lcd1602_Write_Cmd(unsigned char cmd)     //写命令
+/*******************************************************************************
+* 函 数 名         :   Lcd1602_Write_Cmd
+* 函数功能		     :写命令
+* 输    入         : 要写的命令
+* 输    出         : 无
+* 说    名         : LCD和LED不能同时用
+*******************************************************************************/
+void Lcd1602_Write_Cmd(unsigned char cmd)   
 {
     Read_Busy();
     LCD1602_RS = 0;
@@ -24,7 +36,13 @@ void Lcd1602_Write_Cmd(unsigned char cmd)     //写命令
     LCD1602_EN = 1;
     LCD1602_EN = 0;    
 }
-
+/*******************************************************************************
+* 函 数 名         :   Lcd1602_Write_Data
+* 函数功能		     : 写数据
+* 输    入         : 要写的数据
+* 输    出         : 无
+* 说    名         : LCD和LED不能同时用
+*******************************************************************************/
 void Lcd1602_Write_Data(unsigned char dat)   //写数据
 {
       Read_Busy();
@@ -34,8 +52,14 @@ void Lcd1602_Write_Data(unsigned char dat)   //写数据
       LCD1602_EN = 1;
       LCD1602_EN = 0;
 }
-
-void LcdSetCursor(unsigned char x,unsigned char y)  //坐标显示
+/*******************************************************************************
+* 函 数 名         :   LcdSetCursor
+* 函数功能		     : 坐标设置
+* 输    入         : 坐标
+* 输    出         : 无
+* 说    名         : LCD和LED不能同时用
+*******************************************************************************/
+void LcdSetCursor(unsigned char x,unsigned char y) 
 {
     unsigned char addr;
     if(y == 0)
@@ -45,8 +69,13 @@ void LcdSetCursor(unsigned char x,unsigned char y)  //坐标显示
     
     Lcd1602_Write_Cmd(addr|0x80);
 }
-
-//按指定位置显示一个字符
+/*******************************************************************************
+* 函 数 名         :   DisplayOneChar
+* 函数功能		     : //按指定位置显示一个字符
+* 输    入         : 坐标和数据
+* 输    出         : 无
+* 说    名         : LCD和LED不能同时用
+*******************************************************************************/
 void DisplayOneChar(unsigned char X, unsigned char Y, unsigned char DData)
 {
 	Y &= 0x1;
@@ -57,8 +86,14 @@ void DisplayOneChar(unsigned char X, unsigned char Y, unsigned char DData)
 	Lcd1602_Write_Data(DData); //发数据
 }
 
-
-void LcdShowStr(unsigned char x,unsigned char y,unsigned char *str)     //显示字符串
+/*******************************************************************************
+* 函 数 名         :   turn_on_led
+* 函数功能		     :   //显示字符串
+* 输    入         : 坐标和字符串的首地址
+* 输    出         : 无
+* 说    名         : LCD和LED不能同时用
+*******************************************************************************/
+void LcdShowStr(unsigned char x,unsigned char y,unsigned char *str)     
 {
     LcdSetCursor(x,y);      //当前字符的坐标
     while(*str != '\0')
@@ -66,7 +101,13 @@ void LcdShowStr(unsigned char x,unsigned char y,unsigned char *str)     //显示字
         Lcd1602_Write_Data(*str++);
     }
 }
-
+/*******************************************************************************
+* 函 数 名         :   InitLcd1602
+* 函数功能		     :1602初始化
+* 输    入         : 无
+* 输    出         : 无
+* 说    名         : LCD和LED不能同时用
+*******************************************************************************/
 void InitLcd1602()              //1602初始化
 {
     Lcd1602_Write_Cmd(0x38);    //打开，5*8,8位数据

@@ -1,4 +1,4 @@
-C51 COMPILER V9.54   MAIN                                                                  04/06/2019 10:23:25 PAGE 1   
+C51 COMPILER V9.54   MAIN                                                                  04/06/2019 11:49:41 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
@@ -22,33 +22,36 @@ line level    source
   12          *******************************************************************************/
   13          void main()             //主函数，每个C程序里都只有一个主函数
   14          {                 //{}代表函数的开始和结尾，注意成对存在
-  15   1        unsigned int i = 0;       //定义循环变量i,用于延时
-  16   1        unsigned char cnt = 0;        //定义计数变量cnt,用于移位
+  15   1      
+  16   1        unsigned char PuZh[]=" Init success ";  
   17   1        Exit_Init ();
   18   1        InitLcd1602();
-  19   1        
-  20   1      
-  21   1        while(1)         //程序在这个函数死循环
-  22   1        {
-  23   2          if (flag == idle_state)
-  24   2            idle_handle();
-  25   2          else if (flag == identify_state)
-  26   2            identify_handle();
-  27   2          else if (flag == del_state)
-  28   2            del_handle();
-  29   2          else 
-  30   2            add_handle();
-  31   2        }
-  32   1      }
-  33          
+  19   1        Ds1302Init();
+  20   1        LcdShowStr(0,0,PuZh);
+  21   1        delay_ms(500);
+  22   1        delay_ms(500);
+  23   1      
+  24   1        while(1)         //程序在这个函数死循环
+  25   1        {
+  26   2          if (flag == idle_state)
+  27   2            idle_handle();
+  28   2          else if (flag == identify_state)
+  29   2            identify_handle();
+  30   2          else if (flag == del_state)
+  31   2            del_handle();
+  32   2          else 
+  33   2            add_handle();
+  34   2        }
+  35   1      }
+  36          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     55    ----
-   CONSTANT SIZE    =   ----    ----
+   CODE SIZE        =     92    ----
+   CONSTANT SIZE    =     15    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =      2       3
+   DATA SIZE        =      2      15
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

@@ -1,4 +1,4 @@
-C51 COMPILER V9.54   LCD                                                                   04/06/2019 10:23:26 PAGE 1   
+C51 COMPILER V9.54   LCD                                                                   04/06/2019 11:49:42 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE LCD
@@ -10,82 +10,125 @@ line level    source
 
    1          #include"lcd.h"
    2          
-   3          
-   4          void Read_Busy()           //忙检测函数，判断bit7是0，允许执行；1禁止
-   5          {
-   6   1          unsigned char sta;      //
-   7   1          LCD1602_DB = 0xff;
-   8   1          LCD1602_RS = 0;
-   9   1          LCD1602_RW = 1;
-  10   1          do
-  11   1          {
-  12   2              LCD1602_EN = 1;
-  13   2              sta = LCD1602_DB;
-  14   2              LCD1602_EN = 0;    //使能，用完就拉低，释放总线
-  15   2          }while(sta & 0x80);
-  16   1      }
-  17          
-  18          void Lcd1602_Write_Cmd(unsigned char cmd)     //写命令
-  19          {
-  20   1          Read_Busy();
-  21   1          LCD1602_RS = 0;
-  22   1          LCD1602_RW = 0;
-  23   1          LCD1602_DB = cmd;
-  24   1          LCD1602_EN = 1;
-  25   1          LCD1602_EN = 0;    
-  26   1      }
-  27          
-  28          void Lcd1602_Write_Data(unsigned char dat)   //写数据
-  29          {
-  30   1            Read_Busy();
-  31   1            LCD1602_RS = 1;
-  32   1            LCD1602_RW = 0;
-  33   1            LCD1602_DB = dat;
-  34   1            LCD1602_EN = 1;
-  35   1            LCD1602_EN = 0;
-  36   1      }
-  37          
-  38          void LcdSetCursor(unsigned char x,unsigned char y)  //坐标显示
-  39          {
-  40   1          unsigned char addr;
-  41   1          if(y == 0)
-  42   1              addr = 0x00 + x;
-  43   1          else
-  44   1              addr = 0x40 + x;
-  45   1          
-  46   1          Lcd1602_Write_Cmd(addr|0x80);
-  47   1      }
-  48          
-  49          //按指定位置显示一个字符
-  50          void DisplayOneChar(unsigned char X, unsigned char Y, unsigned char DData)
-  51          {
-  52   1        Y &= 0x1;
-  53   1        X &= 0xF; //限制X不能大于15，Y不能大于1
-  54   1        if (Y) X |= 0x40; //当要显示第二行时地址码+0x40;
-C51 COMPILER V9.54   LCD                                                                   04/06/2019 10:23:26 PAGE 2   
+   3          /*******************************************************************************
+   4          * 函 数 名         :  Read_Busy
+   5          * 函数功能         : 忙检测函数
+   6          * 输    入         : 无
+   7          * 输    出         : 无
+   8          * 说    名         : 应去掉led功能，判断bit7是0，允许执行；1禁止
+   9          *******************************************************************************/
+  10          void Read_Busy()          
+  11          {
+  12   1          unsigned char sta;      //
+  13   1          LCD1602_DB = 0xff;
+  14   1          LCD1602_RS = 0;
+  15   1          LCD1602_RW = 1;
+  16   1          do
+  17   1          {
+  18   2              LCD1602_EN = 1;
+  19   2              sta = LCD1602_DB;
+  20   2              LCD1602_EN = 0;    //使能，用完就拉低，释放总线
+  21   2          }while(sta & 0x80);
+  22   1      }
+  23          /*******************************************************************************
+  24          * 函 数 名         :   Lcd1602_Write_Cmd
+  25          * 函数功能         :写命令
+  26          * 输    入         : 要写的命令
+  27          * 输    出         : 无
+  28          * 说    名         : LCD和LED不能同时用
+  29          *******************************************************************************/
+  30          void Lcd1602_Write_Cmd(unsigned char cmd)   
+  31          {
+  32   1          Read_Busy();
+  33   1          LCD1602_RS = 0;
+  34   1          LCD1602_RW = 0;
+  35   1          LCD1602_DB = cmd;
+  36   1          LCD1602_EN = 1;
+  37   1          LCD1602_EN = 0;    
+  38   1      }
+  39          /*******************************************************************************
+  40          * 函 数 名         :   Lcd1602_Write_Data
+  41          * 函数功能         : 写数据
+  42          * 输    入         : 要写的数据
+  43          * 输    出         : 无
+  44          * 说    名         : LCD和LED不能同时用
+  45          *******************************************************************************/
+  46          void Lcd1602_Write_Data(unsigned char dat)   //写数据
+  47          {
+  48   1            Read_Busy();
+  49   1            LCD1602_RS = 1;
+  50   1            LCD1602_RW = 0;
+  51   1            LCD1602_DB = dat;
+  52   1            LCD1602_EN = 1;
+  53   1            LCD1602_EN = 0;
+  54   1      }
+C51 COMPILER V9.54   LCD                                                                   04/06/2019 11:49:42 PAGE 2   
 
-  55   1        X |= 0x80; //算出指令码
-  56   1        Lcd1602_Write_Cmd(X); //发命令字
-  57   1        Lcd1602_Write_Data(DData); //发数据
-  58   1      }
-  59          
-  60          
-  61          void LcdShowStr(unsigned char x,unsigned char y,unsigned char *str)     //显示字符串
-  62          {
-  63   1          LcdSetCursor(x,y);      //当前字符的坐标
-  64   1          while(*str != '\0')
-  65   1          {
-  66   2              Lcd1602_Write_Data(*str++);
-  67   2          }
-  68   1      }
-  69          
-  70          void InitLcd1602()              //1602初始化
-  71          {
-  72   1          Lcd1602_Write_Cmd(0x38);    //打开，5*8,8位数据
-  73   1          Lcd1602_Write_Cmd(0x0c);
-  74   1          Lcd1602_Write_Cmd(0x06);
-  75   1          Lcd1602_Write_Cmd(0x01);    //清屏   
-  76   1      }
+  55          /*******************************************************************************
+  56          * 函 数 名         :   LcdSetCursor
+  57          * 函数功能         : 坐标设置
+  58          * 输    入         : 坐标
+  59          * 输    出         : 无
+  60          * 说    名         : LCD和LED不能同时用
+  61          *******************************************************************************/
+  62          void LcdSetCursor(unsigned char x,unsigned char y) 
+  63          {
+  64   1          unsigned char addr;
+  65   1          if(y == 0)
+  66   1              addr = 0x00 + x;
+  67   1          else
+  68   1              addr = 0x40 + x;
+  69   1          
+  70   1          Lcd1602_Write_Cmd(addr|0x80);
+  71   1      }
+  72          /*******************************************************************************
+  73          * 函 数 名         :   DisplayOneChar
+  74          * 函数功能         : //按指定位置显示一个字符
+  75          * 输    入         : 坐标和数据
+  76          * 输    出         : 无
+  77          * 说    名         : LCD和LED不能同时用
+  78          *******************************************************************************/
+  79          void DisplayOneChar(unsigned char X, unsigned char Y, unsigned char DData)
+  80          {
+  81   1        Y &= 0x1;
+  82   1        X &= 0xF; //限制X不能大于15，Y不能大于1
+  83   1        if (Y) X |= 0x40; //当要显示第二行时地址码+0x40;
+  84   1        X |= 0x80; //算出指令码
+  85   1        Lcd1602_Write_Cmd(X); //发命令字
+  86   1        Lcd1602_Write_Data(DData); //发数据
+  87   1      }
+  88          
+  89          /*******************************************************************************
+  90          * 函 数 名         :   turn_on_led
+  91          * 函数功能         :   //显示字符串
+  92          * 输    入         : 坐标和字符串的首地址
+  93          * 输    出         : 无
+  94          * 说    名         : LCD和LED不能同时用
+  95          *******************************************************************************/
+  96          void LcdShowStr(unsigned char x,unsigned char y,unsigned char *str)     
+  97          {
+  98   1          LcdSetCursor(x,y);      //当前字符的坐标
+  99   1          while(*str != '\0')
+ 100   1          {
+ 101   2              Lcd1602_Write_Data(*str++);
+ 102   2          }
+ 103   1      }
+ 104          /*******************************************************************************
+ 105          * 函 数 名         :   InitLcd1602
+ 106          * 函数功能         :1602初始化
+ 107          * 输    入         : 无
+ 108          * 输    出         : 无
+ 109          * 说    名         : LCD和LED不能同时用
+ 110          *******************************************************************************/
+ 111          void InitLcd1602()              //1602初始化
+ 112          {
+ 113   1          Lcd1602_Write_Cmd(0x38);    //打开，5*8,8位数据
+ 114   1          Lcd1602_Write_Cmd(0x0c);
+ 115   1          Lcd1602_Write_Cmd(0x06);
+ 116   1          Lcd1602_Write_Cmd(0x01);    //清屏   
+C51 COMPILER V9.54   LCD                                                                   04/06/2019 11:49:42 PAGE 3   
+
+ 117   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE

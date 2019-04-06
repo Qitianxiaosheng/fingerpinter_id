@@ -467,14 +467,14 @@
               <FilePath>..\HARDWARE\fpm.c</FilePath>
             </File>
             <File>
-              <FileName>state_pros.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWARE\state_pros.c</FilePath>
-            </File>
-            <File>
               <FileName>uart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>state.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\state.c</FilePath>
             </File>
           </Files>
         </Group>
