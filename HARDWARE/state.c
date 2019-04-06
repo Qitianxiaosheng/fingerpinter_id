@@ -28,7 +28,8 @@ void idle_handle(void)
 	DisplayOneChar(12,1,'-');
 	DisplayOneChar(13,1,'0'+TIME[0]/16);				//秒
 	DisplayOneChar(14,1,'0'+(TIME[0]&0x0f));
- delay_ms(50);
+  delay_ms(50);
+	no_speaker();	  
 }
 /*******************************************************************************
 * 函 数 名         :   add_handle
@@ -41,9 +42,9 @@ void add_handle(void)
 {
 	unsigned char stat[]=" ADD_STATE";
   Lcd1602_Write_Cmd(0x01); //清屏
- 
   LcdShowStr(0,0,stat);
   delay_ms(50);
+	no_speaker();	 
 }
 /*******************************************************************************
 * 函 数 名         :   del_handle
@@ -58,7 +59,7 @@ void del_handle (void)
 	Lcd1602_Write_Cmd(0x01); //清屏
   LcdShowStr(0,0,stat);
   delay_ms(50);
-
+  no_speaker();	 
 }
 /*******************************************************************************
 * 函 数 名         :   identify_handle
@@ -73,7 +74,7 @@ void identify_handle(void)
 	Lcd1602_Write_Cmd(0x01); //清屏
   LcdShowStr(0,0,stat);
   delay_ms(50);
-
+  success_speaker();
 }
 
 

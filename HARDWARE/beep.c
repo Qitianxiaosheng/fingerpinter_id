@@ -1,5 +1,5 @@
 #include "beep.h"
-#include "delay.h"
+#include "timer.h"
 /*******************************************************************************
 * 函 数 名         :   turn_on_speaker
 * 函数功能		     : 有源蜂鸣器启动
@@ -33,7 +33,21 @@ void turn_off_speaker(void)
 *******************************************************************************/
 void success_speaker(void)
 {
-
+	 time_ms_init(50,on);
+  if(time_flag<=2)
+			turn_on_speaker();
+	else if(time_flag<=4)
+		  turn_off_speaker();
+	else if(time_flag<=8)
+		  turn_on_speaker();
+	else if(time_flag<=10)
+		  turn_off_speaker();
+	else if(time_flag<=12)
+    	turn_on_speaker();
+	else if(time_flag<20)
+		 turn_off_speaker();
+	else 
+		time_flag  = 0;
 }
 /*******************************************************************************
 * 函 数 名         :   alarm_speakef
@@ -42,13 +56,31 @@ void success_speaker(void)
 * 输    出         : 无
 * 说    名         : 此时J7的5,3用跳线帽连在一起
 *******************************************************************************/
-void alarm_speakef(void)
+void alarm_speaker(void)
 {
-
-
-
+  time_ms_init(50,on);
+	if(time_flag<=5)
+			turn_on_speaker();
+	else if(time_flag<=15)
+		  turn_off_speaker();
+	else if(time_flag<=20)
+		  turn_on_speaker();
+	else 
+		time_flag  = 0;
 }
 
+/*******************************************************************************
+* 函 数 名         :   no_speaker
+* 函数功能		     : 无蜂鸣器模式
+* 输    入         : 无
+* 输    出         : 无
+* 说    名         : 此时J7的5,3用跳线帽连在一起
+*******************************************************************************/
+void no_speaker(void)
+{
+  time_ms_init(50,off);
+	turn_off_speaker();
+}
 
 
 
