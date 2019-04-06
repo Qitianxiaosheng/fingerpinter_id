@@ -15,7 +15,7 @@ void main()							//主函数，每个C程序里都只有一个主函数
 	unsigned int i = 0;				//定义循环变量i,用于延时
 	unsigned char cnt = 0;				//定义计数变量cnt,用于移位
   Exit_Init ();
-	LcdInit();
+  InitLcd1602();
 	
 
 	while(1)			   //程序在这个函数死循环

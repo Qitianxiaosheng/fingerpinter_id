@@ -12,12 +12,8 @@
 *******************************************************************************/
 void idle_handle(void)
 {
- u8 i;
-  u8 Disp[]=" Pechin Science ";
-	for(i=0;i<16;i++)
-	{
-		LcdWriteData(Disp[i]);	
-	}
+ unsigned char PuZh[]=" Pechin Science ";
+ LcdShowStr(0,0,PuZh);
 
 }
 /*******************************************************************************
