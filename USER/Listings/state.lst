@@ -1,4 +1,4 @@
-C51 COMPILER V9.54   STATE                                                                 04/06/2019 15:08:43 PAGE 1   
+C51 COMPILER V9.54   STATE                                                                 04/07/2019 11:45:19 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE STATE
@@ -62,7 +62,7 @@ line level    source
   52   1        { 
   53   2          delay_ms(10);
   54   2          if(KEY2 == 0)
-C51 COMPILER V9.54   STATE                                                                 04/06/2019 15:08:43 PAGE 2   
+C51 COMPILER V9.54   STATE                                                                 04/07/2019 11:45:19 PAGE 2   
 
   55   2          {
   56   3           switch(id_flag)
@@ -126,7 +126,7 @@ line level    source
  114          /*******************************************************************************
  115          * 函 数 名         :   identify_handle
  116          * 函数功能         : 识别指纹服务函数
-C51 COMPILER V9.54   STATE                                                                 04/06/2019 15:08:43 PAGE 3   
+C51 COMPILER V9.54   STATE                                                                 04/07/2019 11:45:19 PAGE 3   
 
  117          * 输    入         : 无
  118          * 输    出         : 无

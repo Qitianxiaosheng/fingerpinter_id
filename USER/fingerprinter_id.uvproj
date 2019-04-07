@@ -427,11 +427,6 @@
               <FilePath>.\main.c</FilePath>
             </File>
             <File>
-              <FileName>led.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWARE\led.c</FilePath>
-            </File>
-            <File>
               <FileName>beep.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\beep.c</FilePath>
@@ -467,14 +462,14 @@
               <FilePath>..\HARDWARE\fpm.c</FilePath>
             </File>
             <File>
-              <FileName>uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWARE\uart.c</FilePath>
-            </File>
-            <File>
               <FileName>state.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\state.c</FilePath>
+            </File>
+            <File>
+              <FileName>uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\uart.c</FilePath>
             </File>
           </Files>
         </Group>
