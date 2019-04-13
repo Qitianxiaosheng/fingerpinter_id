@@ -10,19 +10,20 @@
 
 void delay_ms(unsigned char t)//ÑÓÊ±ms
 {
-  unsigned char a,i,j;
-  for(a=t;a>0;a--)
+	unsigned char i, j;
+  int k;
+	for(k=0;k<t;k++)
 	{
-		_nop_();
-		_nop_();
-		_nop_();
-		i = 11;
-		j = 190;
-		do
-		{
-			while (--j);
-		}while (--i);
-	}
+	_nop_();
+	_nop_();
+	_nop_();
+	i = 11;
+	j = 190;
+	do
+	{
+		while (--j);
+	} while (--i);
+ }
 }
 /*******************************************************************************
 * º¯ Êý Ãû         :  delay_us

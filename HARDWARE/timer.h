@@ -1,7 +1,9 @@
-#include <stc15f2k60s2.h>
+#ifndef _TIMER_H_
+#define _TIMER_H_
 
-#define on 1
-#define off 0
-extern u8 time_flag;
+#include "stc15f2k60s2.h"
 
-void time_ms_init(u8 t,u8 on_off);	  //定时器0初始化
+extern  unsigned int clk0;
+void  TimerInit(void);
+void  Timer0(void);
+#endif

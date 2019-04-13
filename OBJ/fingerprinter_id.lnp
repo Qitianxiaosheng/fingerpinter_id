@@ -1,13 +1,13 @@
 "..\OBJ\STARTUP.obj",
 "..\OBJ\main.obj",
-"..\OBJ\beep.obj",
 "..\OBJ\delay.obj",
 "..\OBJ\exit.obj",
-"..\OBJ\lcd.obj",
 "..\OBJ\timer.obj",
 "..\OBJ\rtc.obj",
-"..\OBJ\fpm.obj",
 "..\OBJ\state.obj",
+"..\OBJ\ket_arr.obj",
+"..\OBJ\fpm.obj",
+"..\OBJ\lcd.obj",
 "..\OBJ\uart.obj" 
 TO "..\OBJ\fingerprinter_id" 
 PRINT(".\Listings\fingerprinter_id.m51") RAMSIZE(256) 

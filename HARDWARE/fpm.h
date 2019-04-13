@@ -1,74 +1,43 @@
-//#ifndef __FPM_H_
-//#define __FPM_H_
-//#include <STC15F2K60S2.H>
-//#include <intrins.h>
-//#include "uart.h"
-//#include "delay.h" 
+#ifndef __FPM_H_
+#define __FPM_H_
+#include "stc15f2k60s2.h"
+#include "beep.h"
+#include "led.h"
+#include "uart.h"
+#include "delay.h"
+#include "timer.h"
 
 
+extern unsigned char 	SaveNumber,searchnum;
+extern unsigned int  	SearchNumber;		
+extern bit changeflag,modeflag,clearallflag;  //默认为识别模式，如果为1为录入指纹模式,每录入一次SaveNumber++
 
 
-//sbit WAK = P2^5;
+//////////////////////////////////////宏定义////////////////////////////////////////////////////////////////////////
+#define FALSE 0
+#define TURE  1
 
-//#define CharBuffer1 0x01
-//#define CharBuffer2 0x02
+//状态定义表
+#define on    	1
+#define off   	0
 
-//extern u32 AS608Addr;//模块地址
+#define MAX_NUMBER    63 
+//////////////////////////////////////宏定义------------结束////////////////////////////////////////////////////////
 
-//typedef struct  
-//{
-//	u16 pageID;//指纹ID
-//	u16 mathscore;//匹配得分
-//}SearchResult;
 
-//typedef struct
-//{
-//	u16 PS_max;//指纹最大容量
-//	u8  PS_level;//安全等级
-//	u32 PS_addr;
-//	u8  PS_size;//通讯数据包大小
-//	u8  PS_N;//波特率基数N
-//}SysPara;
+unsigned char send_command( unsigned char *p);
+bit Command(unsigned char *p,unsigned char MaxTime);
+bit VefPSW(void);
+void Clear_All(void);
+void Clear_ONE(u8 num);
+unsigned char ImgProcess(unsigned char BUFID);
+bit Searchfinger(void);
+unsigned char search(void);
+bit savefingure(unsigned char ID);
+unsigned char enroll(void);
 
-//void WAK_Init(void);
 
-//int JudgeStr(u16 waittime);
-
-//int PS_GetImage(void); //录入图像 
-// 
-//u8 PS_GenChar(u8 BufferID);//生成特征 
-
-//u8 PS_Match(void);//精确比对两枚指纹特征 
-
-//u8 PS_Search(u8 BufferID,u16 StartPage,u16 PageNum,SearchResult *p);//搜索指纹 
-// 
-//u8 PS_RegModel(void);//合并特征（生成模板） 
-// 
-//u8 PS_StoreChar(u8 BufferID,u16 PageID);//储存模板 
-
-//u8 PS_DeletChar(u16 PageID,u16 N);//删除模板 
-
-//u8 PS_Empty(void);//清空指纹库 
-
-//u8 PS_WriteReg(u8 RegNum,u8 DATA);//写系统寄存器 
-// 
-//u8 PS_ReadSysPara(SysPara *p); //读系统基本参数 
-
-//u8 PS_SetAddr(u32 addr);  //设置模块地址 
-
-//u8 PS_WriteNotepad(u8 NotePageNum,u8 *content);//写记事本 
-
-//u8 PS_ReadNotepad(u8 NotePageNum,u8 *note);//读记事 
-
-//u8 PS_HighSpeedSearch(u8 BufferID,u16 StartPage,u16 PageNum,SearchResult *p);//高速搜索 
-//  
-//u8 PS_ValidTempleteNum(u16 *ValidN);//读有效模板个数 
-
-//u8 PS_HandShake(u32 *PS_Addr); //与AS608模块握手
-
-//const char *EnsureMessage(u8 ensure);//确认码错误信息解析
-
-//#endif
+#endif
 
 
 

@@ -1,17 +1,19 @@
 #include "timer.h"
 
-u8 time_flag=0;
-void time_ms_init(u8 t,u8 on_off)	  //定时器0初始唬t为定时的毫秒数 
+unsigned int clk0=0;
+void  TimerInit(void)
 {
-	TMOD=0X00;	 //定时器0 方式0
-	TH0=(65536-t*10000)/256;
-	TL0=(65536-t*10000)%256; 
-  TR0=on_off;
-	EA=1;
-	ET0=1;
+	ET0=1;     //定时器0开中断
+	TL0=0x97;  //17ms的初值
+	TH0=0xBD;
+  TR0=1;// 开定时器0	
+	
+}
+void  Timer0(void) interrupt 1//定时器0中断函数
+{
+ 	TL0=0x97;
+	TH0=0xBD;
+	clk0++;   //延时17ms
 }
 
-void time0() interrupt 1
-{
-	time_flag++;
-}
+

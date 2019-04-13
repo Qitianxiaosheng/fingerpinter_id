@@ -1,4 +1,4 @@
-C51 COMPILER V9.54   BEEP                                                                  04/07/2019 11:45:18 PAGE 1   
+C51 COMPILER V9.54   BEEP                                                                  04/13/2019 17:02:37 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE BEEP
@@ -44,26 +44,36 @@ line level    source
   34          void success_speaker(void)
   35          {
   36   1         time_ms_init(50,on);
+*** WARNING C206 IN LINE 36 OF ..\HARDWARE\beep.c: 'time_ms_init': missing function-prototype
+*** ERROR C267 IN LINE 36 OF ..\HARDWARE\beep.c: 'time_ms_init': requires ANSI-style prototype
+*** ERROR C202 IN LINE 36 OF ..\HARDWARE\beep.c: 'on': undefined identifier
   37   1        if(time_flag<=2)
+*** ERROR C202 IN LINE 37 OF ..\HARDWARE\beep.c: 'time_flag': undefined identifier
   38   1            turn_on_speaker();
   39   1        else if(time_flag<=4)
+*** ERROR C202 IN LINE 39 OF ..\HARDWARE\beep.c: 'time_flag': undefined identifier
   40   1            turn_off_speaker();
   41   1        else if(time_flag<=8)
+*** ERROR C202 IN LINE 41 OF ..\HARDWARE\beep.c: 'time_flag': undefined identifier
   42   1            turn_on_speaker();
   43   1        else if(time_flag<=10)
+*** ERROR C202 IN LINE 43 OF ..\HARDWARE\beep.c: 'time_flag': undefined identifier
   44   1            turn_off_speaker();
   45   1        else if(time_flag<=12)
+*** ERROR C202 IN LINE 45 OF ..\HARDWARE\beep.c: 'time_flag': undefined identifier
   46   1            turn_on_speaker();
+C51 COMPILER V9.54   BEEP                                                                  04/13/2019 17:02:37 PAGE 2   
+
   47   1        else if(time_flag<20)
+*** ERROR C202 IN LINE 47 OF ..\HARDWARE\beep.c: 'time_flag': undefined identifier
   48   1           turn_off_speaker();
   49   1        else 
   50   1          time_flag  = 0;
+*** ERROR C202 IN LINE 50 OF ..\HARDWARE\beep.c: 'time_flag': undefined identifier
   51   1      }
   52          /*******************************************************************************
   53          * 函 数 名         :   alarm_speakef
   54          * 函数功能         : 失败时发出警报 
-C51 COMPILER V9.54   BEEP                                                                  04/07/2019 11:45:18 PAGE 2   
-
   55          * 输    入         : 无
   56          * 输    出         : 无
   57          * 说    名         : 此时J7的5,3用跳线帽连在一起
@@ -71,14 +81,19 @@ line level    source
   59          void alarm_speaker(void)
   60          {
   61   1        time_ms_init(50,on);
+*** ERROR C202 IN LINE 61 OF ..\HARDWARE\beep.c: 'on': undefined identifier
   62   1        if(time_flag<=5)
+*** ERROR C202 IN LINE 62 OF ..\HARDWARE\beep.c: 'time_flag': undefined identifier
   63   1            turn_on_speaker();
   64   1        else if(time_flag<=15)
+*** ERROR C202 IN LINE 64 OF ..\HARDWARE\beep.c: 'time_flag': undefined identifier
   65   1            turn_off_speaker();
   66   1        else if(time_flag<=20)
+*** ERROR C202 IN LINE 66 OF ..\HARDWARE\beep.c: 'time_flag': undefined identifier
   67   1            turn_on_speaker();
   68   1        else 
   69   1          time_flag  = 0;
+*** ERROR C202 IN LINE 69 OF ..\HARDWARE\beep.c: 'time_flag': undefined identifier
   70   1      }
   71          
   72          /*******************************************************************************
@@ -91,6 +106,7 @@ line level    source
   79          void no_speaker(void)
   80          {
   81   1        time_ms_init(50,off);
+*** ERROR C202 IN LINE 81 OF ..\HARDWARE\beep.c: 'off': undefined identifier
   82   1        turn_off_speaker();
   83   1      }
   84          
@@ -101,16 +117,4 @@ line level    source
   89          
   90          
 
-
-MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    123    ----
-   CONSTANT SIZE    =   ----    ----
-   XDATA SIZE       =   ----    ----
-   PDATA SIZE       =   ----    ----
-   DATA SIZE        =   ----    ----
-   IDATA SIZE       =   ----    ----
-   BIT SIZE         =   ----    ----
-END OF MODULE INFORMATION.
-
-
-C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
+C51 COMPILATION COMPLETE.  1 WARNING(S),  15 ERROR(S)

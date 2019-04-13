@@ -5,10 +5,10 @@
 <h2>Tool Versions:</h2>
 IDE-Version: ¦ÌVision V5.14.2
 Copyright (C) 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: zzz zz, zz, LIC=----
+License Information: zzz zz, zz, LIC=1W156-DGSX9-M1FPK-ZJ7T7-1WVZE-YE2H1
  
 Tool Versions:
-Toolchain:       PK51 Prof. Develpers Kit  Version: 9.54
+Toolchain:       MDK51 Professional  Version: 9.54
 Toolchain Path:  D:\MDK5\C51\BIN
 C Compiler:      C51.exe V9.54
 Assembler:       A51.exe V8.02c
@@ -16,36 +16,30 @@ Linker/Locator:  BL51.exe V6.22
 Library Manager: LIB51.exe V4.30.1.0
 Hex Converter:   OH51.exe V2.7.0.0
 CPU DLL:         S8051.DLL V3.100.0.0
-Dialog DLL:      DP51.DLL V2.62.0.1 
+Dialog DLL:      DP51.DLL V2.62.0.1
+Target DLL:      STCMON51.DLL V1, 0, 8, 0
+Dialog DLL:      TP51.DLL V2.58
+ 
 <h2>Project:</h2>
-E:\zhiwen_id\USER\fingerprinter_id.uvproj
-Project File Date:  04/06/2019
+C:\Users\lenovo\Desktop\zhiwen_id - ¸±±¾\USER\fingerprinter_id.uvproj
+Project File Date:  04/13/2019
 
 <h2>Output:</h2>
 Rebuild target 'Target 1'
 assembling STARTUP.A51...
 compiling main.c...
-compiling beep.c...
 compiling delay.c...
 compiling exit.c...
-compiling lcd.c...
 compiling timer.c...
 compiling rtc.c...
-compiling fpm.c...
 compiling state.c...
+compiling ket_arr.c...
+..\HARDWARE\ket_arr.c(38): warning C294: unreachable code
+compiling fpm.c...
+..\HARDWARE\fpm.c(189): error C174: return-expression on void-function
+compiling lcd.c...
 compiling uart.c...
-linking...
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?ALARM_SPEAKER?BEEP
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?_DELAY_US?DELAY
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?PR?INITLCD1602?LCD
-*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
-    SEGMENT: ?C_INITSEG
-Program Size: data=77.0 xdata=0 code=2212
-creating hex file from "..\OBJ\fingerprinter_id"...
-"..\OBJ\fingerprinter_id" - 0 Error(s), 4 Warning(s).
+Target not created.
 </pre>
 </body>
 </html>

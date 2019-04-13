@@ -1,15 +1,15 @@
-C51 COMPILER V9.54   MAIN                                                                  04/07/2019 11:45:18 PAGE 1   
+C51 COMPILER V9.54   MAIN                                                                  04/13/2019 23:32:07 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
 OBJECT MODULE PLACED IN ..\OBJ\main.obj
-COMPILER INVOKED BY: D:\MDK5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\HARDWARE) DEBUG OBJECTEXTEND PRIN
-                    -T(.\Listings\main.lst) TABS(2) OBJECT(..\OBJ\main.obj)
+COMPILER INVOKED BY: D:\MDK5\C51\BIN\C51.EXE main.c LARGE OPTIMIZE(8,SPEED) BROWSE INCDIR(..\HARDWARE) DEBUG OBJECTEXTEN
+                    -D PRINT(.\Listings\main.lst) TABS(2) OBJECT(..\OBJ\main.obj)
 
 line level    source
 
    1          #include "state.h"//包含特殊功能寄存器的头文件
-   2          int flag ;
+   2          int flag=0 ;
    3          
    4          /*******************************************************************************
    5          * 函 数 名         :   idle_handle
@@ -20,37 +20,58 @@ line level    source
   10          *******************************************************************************/
   11          void main()             //主函数，每个C程序里都只有一个主函数
   12          {                 //{}代表函数的开始和结尾，注意成对存在
-  13   1      
+  13   1        u16 i;
   14   1        unsigned char PuZh[]=" Init success ";  
-  15   1          Exit_Init ();
-  16   1      //  InitLcd1602();
-  17   1          Ds1302Init();
-  18   1          UsartInit();
-  19   1      //  LcdShowStr(0,0,PuZh);
-  20   1          delay_ms(500);
-  21   1          delay_ms(500);
-  22   1      
-  23   1        while(1)         //程序在这个函数死循环
-  24   1        {
-  25   2          if (flag == idle_state)
-  26   2            idle_handle();
-  27   2          else if (flag == identify_state)
-  28   2            identify_handle();
-  29   2          else if (flag == del_state)
-  30   2            del_handle();
-  31   2          else 
-  32   2            add_handle();
-  33   2        }
-  34   1      }
-  35          
+  15   1          TimerInit();
+  16   1          Exit_Init ();
+  17   1          InitLcd1602();
+  18   1          Ds1302Init();
+  19   1          UartInit();
+  20   1          for(i=0;i<6;i++)//开始握手6次，如果没有一次成功，表示模块通信不正常。只要成功就跳出此循环
+  21   1         {
+  22   2            delay_ms(500);
+  23   2           if(VefPSW()==1)//与模块握手通过，绿灯亮起。进入识别模式
+  24   2           {
+  25   3              buzzer=0;
+  26   3              delay_ms(500);
+  27   3              buzzer=1;
+  28   3              break; //成功就退出这个循环
+  29   3             
+  30   3           }   
+  31   2         }
+  32   1          LcdShowStr(0,0,PuZh);
+  33   1          delay_ms(500);
+  34   1          delay_ms(500);
+  35   1        while(1)         //程序在这个函数死循环
+  36   1        {
+  37   2          
+  38   2         
+  39   2          if (flag == idle_state)
+  40   2            idle_handle();
+  41   2          else if (flag == identify_state)
+  42   2            identify_handle();
+  43   2          else if (flag == pwd_state)
+  44   2            pwd_handle();
+  45   2          else if (flag == err_state)
+  46   2            err_handle();   
+  47   2          else if (flag == del_state)
+  48   2            del_handle();
+  49   2          else 
+  50   2            add_handle();
+  51   2          
+  52   2        }
+  53   1      }
+  54          
+C51 COMPILER V9.54   MAIN                                                                  04/13/2019 23:32:07 PAGE 2   
+
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     80    ----
+   CODE SIZE        =    201    ----
    CONSTANT SIZE    =     15    ----
-   XDATA SIZE       =   ----    ----
+   XDATA SIZE       =      2      17
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =      2      15
+   DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

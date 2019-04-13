@@ -2,8 +2,9 @@
 #define __LED_H_
 #include <stc15f2k60s2.h>
 #include <intrins.h>
-sbit led0 = P0^0;
-sbit led1 = P0^1;
+
+sbit red=   P0^0;//录入模式指示灯 在板子靠近单片机处
+sbit green= P0^1;//识别模式指示灯 在板子远离单片机处
 sbit led2 = P0^2;
 sbit led3 = P0^3;
 sbit led4 = P0^4;

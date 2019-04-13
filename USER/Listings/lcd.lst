@@ -1,10 +1,10 @@
-C51 COMPILER V9.54   LCD                                                                   04/07/2019 11:45:18 PAGE 1   
+C51 COMPILER V9.54   LCD                                                                   04/13/2019 23:32:09 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE LCD
 OBJECT MODULE PLACED IN ..\OBJ\lcd.obj
-COMPILER INVOKED BY: D:\MDK5\C51\BIN\C51.EXE ..\HARDWARE\lcd.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\HARDWARE) DEBUG OBJECT
-                    -EXTEND PRINT(.\Listings\lcd.lst) TABS(2) OBJECT(..\OBJ\lcd.obj)
+COMPILER INVOKED BY: D:\MDK5\C51\BIN\C51.EXE ..\HARDWARE\lcd.c LARGE OPTIMIZE(8,SPEED) BROWSE INCDIR(..\HARDWARE) DEBUG 
+                    -OBJECTEXTEND PRINT(.\Listings\lcd.lst) TABS(2) OBJECT(..\OBJ\lcd.obj)
 
 line level    source
 
@@ -62,7 +62,7 @@ line level    source
   52   1            LCD1602_EN = 1;
   53   1            LCD1602_EN = 0;
   54   1      }
-C51 COMPILER V9.54   LCD                                                                   04/07/2019 11:45:18 PAGE 2   
+C51 COMPILER V9.54   LCD                                                                   04/13/2019 23:32:09 PAGE 2   
 
   55          /*******************************************************************************
   56          * º¯ Êý Ãû         :   LcdSetCursor
@@ -126,17 +126,17 @@ line level    source
  114   1          Lcd1602_Write_Cmd(0x0c);
  115   1          Lcd1602_Write_Cmd(0x06);
  116   1          Lcd1602_Write_Cmd(0x01);    //ÇåÆÁ   
-C51 COMPILER V9.54   LCD                                                                   04/07/2019 11:45:18 PAGE 3   
+C51 COMPILER V9.54   LCD                                                                   04/13/2019 23:32:09 PAGE 3   
 
  117   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    157    ----
+   CODE SIZE        =    173    ----
    CONSTANT SIZE    =   ----    ----
-   XDATA SIZE       =   ----    ----
+   XDATA SIZE       =   ----       3
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =   ----       3
+   DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
