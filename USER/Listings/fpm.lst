@@ -1,4 +1,4 @@
-C51 COMPILER V9.54   FPM                                                                   04/14/2019 23:52:48 PAGE 1   
+C51 COMPILER V9.54   FPM                                                                   04/17/2019 21:46:40 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE FPM
@@ -62,7 +62,7 @@ line level    source
   46          
   47          ////////////////常用指令定义-------结束///////////////////////////////////////////////////////////////////
              -////////////////////
-C51 COMPILER V9.54   FPM                                                                   04/14/2019 23:52:48 PAGE 2   
+C51 COMPILER V9.54   FPM                                                                   04/17/2019 21:46:40 PAGE 2   
 
   48          unsigned char     FifoNumber=0; 
   49          unsigned char   FIFO[MAX_NUMBER+1]={0};
@@ -126,7 +126,7 @@ line level    source
  106   5                    goto 
  107   5                      restart0;//可以用中断方式进行     
  108   5                        
-C51 COMPILER V9.54   FPM                                                                   04/14/2019 23:52:48 PAGE 3   
+C51 COMPILER V9.54   FPM                                                                   04/17/2019 21:46:40 PAGE 3   
 
  109   5                        }
  110   4                if(flag==1)//第一个字节已经回来，所以flag==1成立
@@ -190,7 +190,7 @@ line level    source
  167          
  168          
  169          bit VefPSW(void)//验证设备握手口令,成功返回1     
-C51 COMPILER V9.54   FPM                                                                   04/14/2019 23:52:48 PAGE 4   
+C51 COMPILER V9.54   FPM                                                                   04/17/2019 21:46:40 PAGE 4   
 
  170          {
  171   1        unsigned char  count=0;
@@ -254,7 +254,7 @@ line level    source
  228   1          if(Command(SEAT,60) && (FifoNumber==15) && (FIFO[9]==0x00) )  
  229   1          {
  230   2          SearchNumber=FIFO[10]*0x100+FIFO[11];//搜索到的页码
-C51 COMPILER V9.54   FPM                                                                   04/14/2019 23:52:48 PAGE 5   
+C51 COMPILER V9.54   FPM                                                                   04/17/2019 21:46:40 PAGE 5   
 
  231   2          //MatchScore=FIFO[12]*0x100+FIFO[13]   可以在此计算得分，从而进行安全级别设定，本程序忽略
  232   2            return 1;
@@ -318,7 +318,7 @@ line level    source
  290          
  291          unsigned char enroll(void) //采集两次指纹，生成1个 指纹模板
  292          {
-C51 COMPILER V9.54   FPM                                                                   04/14/2019 23:52:48 PAGE 6   
+C51 COMPILER V9.54   FPM                                                                   04/17/2019 21:46:40 PAGE 6   
 
  293   1        unsigned char temp=0,count=0;
  294   1          while(1)
@@ -382,7 +382,7 @@ line level    source
  352          
  353          
  354          
-C51 COMPILER V9.54   FPM                                                                   04/14/2019 23:52:48 PAGE 7   
+C51 COMPILER V9.54   FPM                                                                   04/17/2019 21:46:40 PAGE 7   
 
 
 
