@@ -1,6 +1,6 @@
 #include "fpm.h"
 
-
+sbit WAK = P2^5;
 unsigned char   idy_stop_flag=0;
 unsigned char 	SaveNumber=0,searchnum=0;
 unsigned int  	SearchNumber=0;		
@@ -47,8 +47,13 @@ unsigned char code DELE_all[12]={12,0X01 ,0Xff,0xff,0xff,0xff, 0x01, 0,3,  0x0d,
 ////////////////常用指令定义-------结束///////////////////////////////////////////////////////////////////////////////////////
 unsigned char 		FifoNumber=0; 
 unsigned char   FIFO[MAX_NUMBER+1]={0};
-
-
+u8 WAK_Check(void)
+{
+	if(WAK)
+		return 1;
+	else
+		return 0;
+}
 unsigned char send_command( unsigned char *p)
 {
     unsigned char count=0,tmpdat=0,temp=0,i=0,package=0,flag=0,checksum=0;
@@ -182,19 +187,6 @@ void Clear_All(void) //清空指纹库
       delay_ms(200);
 	  Command(DELE_all,50); //清空指纹库  		
 }
-void Clear_ONE(u8 num) //清空指纹库   
-{			
-    if(Command(DELE_one,60) && (FifoNumber==11) && (FIFO[9]==0x00) )  
-    {
-		    return 1;
-  	}     
-    else             
-    {
-       	return 0;
-    }  	
-      delay_ms(200); 		
-}
-
 
 
 unsigned char ImgProcess(unsigned char BUFID)  //发获取图像并生成特征文件，存入BUFID中//输入参数为缓冲区号  

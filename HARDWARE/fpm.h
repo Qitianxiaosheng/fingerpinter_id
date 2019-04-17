@@ -8,10 +8,11 @@
 #include "timer.h"
 
 
+
+
 extern unsigned char 	SaveNumber,searchnum;
 extern unsigned int  	SearchNumber;		
 extern bit changeflag,modeflag,clearallflag;  //Ä¬ÈÏÎªÊ¶±ğÄ£Ê½£¬Èç¹ûÎª1ÎªÂ¼ÈëÖ¸ÎÆÄ£Ê½,Ã¿Â¼ÈëÒ»´ÎSaveNumber++
-
 
 //////////////////////////////////////ºê¶¨Òå////////////////////////////////////////////////////////////////////////
 #define FALSE 0
@@ -24,7 +25,7 @@ extern bit changeflag,modeflag,clearallflag;  //Ä¬ÈÏÎªÊ¶±ğÄ£Ê½£¬Èç¹ûÎª1ÎªÂ¼ÈëÖ¸Î
 #define MAX_NUMBER    63 
 //////////////////////////////////////ºê¶¨Òå------------½áÊø////////////////////////////////////////////////////////
 
-
+u8 WAK_Check(void);
 unsigned char send_command( unsigned char *p);
 bit Command(unsigned char *p,unsigned char MaxTime);
 bit VefPSW(void);

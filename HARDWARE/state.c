@@ -1,11 +1,19 @@
 #include "state.h"
+#define add_day 0
+#define add_hor 1
+#define add_min 2
+
  extern KeyValue;
  extern flag;
- u8 id_flag=id_000;
+ extern uchar TIME[7];	
+ u8 rtc_flag = add_day;
+ u8 id_flag = id_000;
  u8 pwd_flag=0;
  u8 id_stat0[] = " id_000 ";
  u8 id_stat1[] = " id_001 ";
  u8 id_stat2[] = " id_002 ";
+ 
+ 
 /*******************************************************************************
 * 函 数 名         :   idle_handle
 * 函数功能		     : 空闲服务函数
@@ -34,8 +42,62 @@ void idle_handle(void)
 	DisplayOneChar(12,1,'-');
 	DisplayOneChar(13,1,'0'+TIME[0]/16);				//秒
 	DisplayOneChar(14,1,'0'+(TIME[0]&0x0f));
-
-
+	if(KEY2==0)
+	{	
+		delay_ms(10);
+		if(KEY2 == 0)
+		{
+		 switch(rtc_flag)
+			{	
+				case add_day : rtc_flag = add_hor;break;
+			  case add_hor : rtc_flag = add_min;break;
+				case add_min : rtc_flag = add_day;break;
+				default : rtc_flag = add_day;break;
+			}
+		 while(!KEY2);
+    }
+	}
+	if(KEY3==0)//
+	{
+		delay_ms(10);	
+		if(KEY3==0)//如果仍为低电平，表示按键有效
+		{
+			  bcd2hex();
+				while(KEY3==0);//等待松手
+					switch(rtc_flag)
+			 {
+				case add_day:
+					if(TIME[3]<=29)
+						TIME[3]=TIME[3]+1;
+					else
+					{
+						TIME[4]=TIME[4]+1;
+						TIME[3]=1;
+					}
+					  break;
+				case add_hor:
+				  if(TIME[2]<=50)
+						TIME[2]=TIME[2]+1;
+					break;
+				case add_min:
+				  if(TIME[1]<=58)
+						TIME[1]=TIME[1]+1;
+					else
+						TIME[1]=0;
+					break;
+				default:      break;
+			 }
+			 hex2bcd();
+			 Ds1302Init();
+	   }
+	}
+	 switch(rtc_flag)
+			{	
+				case add_day : LcdShowStr(15,0,"d");break;
+			  case add_hor : LcdShowStr(15,0,"h");break;
+				case add_min : LcdShowStr(15,0,"m");break;
+				default : rtc_flag = add_day;break;
+			}
   delay_ms(50);
 		  
 }
@@ -149,7 +211,6 @@ void del_handle (void)
 				default:DisplayOneChar(4,1,'0'+searchnum);
 			
 			 }
-			
 	  }
 	
 	}
@@ -170,10 +231,11 @@ void identify_handle(void)
 	unsigned char stat[]=" IFY_STATE ";
 	Lcd1602_Write_Cmd(0x01); //清屏
   LcdShowStr(0,0,stat);
-   
-  searchnum=search();
-  if(searchnum>=1&&searchnum<=162)//只能存入162个指纹
-	{		         
+   if(WAK_Check())
+	{
+    searchnum=search();
+    if(searchnum>=1&&searchnum<=162)//只能存入162个指纹
+	 {		         
 		buzzer=0;//蜂鸣器响一声 	 
 	  delay_ms(1000);
 		buzzer=1;
@@ -193,7 +255,7 @@ void identify_handle(void)
 		 buzzer=0;delay_ms(100); buzzer=1;delay_ms(100);
 		 buzzer=0;delay_ms(100); buzzer=1;delay_ms(100); 
 	}
-	
+ }
   delay_ms(50);
 }
 /*******************************************************************************
@@ -252,7 +314,7 @@ void pwd_handle(void)
 		flag = err_state;//退出
 		KeyState = 0;
 		KeyValue=0;
-		delay_ms(5000);
+		delay_ms(500);
 	}
   delay_ms(50);
 }
@@ -285,8 +347,32 @@ void err_handle(void)
 	}	
 	flag = 0;//退出
 }
-
-
+/*******************************************************************************
+* 函 数 名         :   bcd2hex
+* 函数功能		     : 将bcd码转化为hex
+* 输    入         : 无
+* 输    出         : 无
+* 说    名         : 改变time数组的格式
+*******************************************************************************/
+void bcd2hex(void)
+{
+	u16 i;
+	for(i=0;i<7;i++)
+		TIME[i]=(TIME[i]/16)*10+TIME[i]%16;
+}
+/*******************************************************************************
+* 函 数 名         :   hex2bcd
+* 函数功能		     : 将hex码转化为bcd
+* 输    入         : 无
+* 输    出         : 无
+* 说    名         : 改变time数组的格式
+*******************************************************************************/
+void hex2bcd(void)
+{
+	u16 i;
+	for(i=0;i<7;i++)
+		TIME[i]=(TIME[i]/10)*16+TIME[i]%10;
+}
 
 
 

@@ -38,10 +38,11 @@ void INT0_ISR(void) interrupt 0
 			switch(flag)
 			{	
 				case idle_state : flag = identify_state; break;
-			  case identify_state : flag = pwd_state;idy_stop_flag=1;break;
-				case del_state : flag = add_state;      break;
+			  case identify_state : flag = pwd_state;break;
+				case del_state : flag = add_state;  break;
 				case add_state : flag = idle_state; break;
-				default : flag = idle_state;
+				case pwd_state : flag = pwd_state; break;
+				default : flag = idle_state;break;
 			}
 		 while(!KEY1);
     }

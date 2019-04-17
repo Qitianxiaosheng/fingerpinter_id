@@ -16,8 +16,8 @@ void identify_handle(void);
 void pwd_handle(void);
 void err_handle(void);	
 
-
-
+void hex2bcd(void);
+void bcd2hex(void);
 #endif
 
 
